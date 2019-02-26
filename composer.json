@@ -1,0 +1,42 @@
+{
+    "name": "anam/lara-phpcart",
+    "description": "Laravel php shopping cart",
+    "keywords": [
+        "Cart",
+        "Shopping cart",
+        "Laravel shopping cart",
+        "Laravel cart",
+        "Laravel php cart"
+    ],
+    "homepage": "https://github.com/anam-hossain/lara-phpcart",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Anam hossain",
+            "email": "enam33@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Anam\\Phpcart\\" : "src/" 
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Anam\\Phpcart\\Tests\\": "tests"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Anam\\Phpcart\\CartServiceProvider"
+            ],
+            "aliases": {
+                "Cart": "Anam\\Phpcart\\Facades\\Cart"
+            }
+        }
+    }
+}
