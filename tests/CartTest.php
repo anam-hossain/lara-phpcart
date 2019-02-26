@@ -3,10 +3,7 @@
 namespace Anam\Phpcart\Tests;
 
 use Anam\Phpcart\Cart;
-use Exception;
-use InvalidArgumentException;
-use PHPUnit\Framework\TestCase;
-use Symfony\Component\HttpFoundation\Session\Storage\MockArraySessionStorage;
+use Tests\TestCase;
 
 class CartTest extends TestCase
 {
@@ -52,7 +49,7 @@ class CartTest extends TestCase
 
     public function testAddCartItem()
     {
-        $cart = new Cart('test', new MockArraySessionStorage());
+        $cart = new Cart('test');
 
         $item = [
             'id' => 123,
@@ -68,7 +65,7 @@ class CartTest extends TestCase
 
     public function testUpdateCartItem()
     {
-        $cart = new Cart('test', new MockArraySessionStorage());
+        $cart = new Cart('test');
 
         $item = [
             'id' => 123,
@@ -88,7 +85,7 @@ class CartTest extends TestCase
 
     public function testUpdateQuantity()
     {
-        $cart = new Cart('test', new MockArraySessionStorage());
+        $cart = new Cart('test');
 
         $item = [
             'id' => 123,
@@ -106,7 +103,7 @@ class CartTest extends TestCase
 
     public function testUpdatePrice()
     {
-        $cart = new Cart('test', new MockArraySessionStorage());
+        $cart = new Cart('test');
 
         $item = [
             'id' => 123,
@@ -124,7 +121,7 @@ class CartTest extends TestCase
 
     public function testRemoveItemFromCart()
     {
-        $cart = new Cart('test', new MockArraySessionStorage());
+        $cart = new Cart('test');
 
         $item = [
             'id' => 123,
@@ -142,7 +139,7 @@ class CartTest extends TestCase
 
     public function testGetItems()
     {
-        $cart = new Cart('test', new MockArraySessionStorage());
+        $cart = new Cart('test');
 
         $item = [
             'id' => 123,
@@ -166,7 +163,7 @@ class CartTest extends TestCase
 
     public function testGetItemById()
     {
-        $cart = new Cart('test', new MockArraySessionStorage());
+        $cart = new Cart('test');
 
         $item = [
             'id' => 123,
@@ -189,7 +186,7 @@ class CartTest extends TestCase
 
     public function testCartHasItem()
     {
-        $cart = new Cart('test', new MockArraySessionStorage());
+        $cart = new Cart('test');
 
         $item = [
             'id' => 123,
@@ -205,7 +202,7 @@ class CartTest extends TestCase
 
     public function testCountUniqueItems()
     {
-        $cart = new Cart('test', new MockArraySessionStorage());
+        $cart = new Cart('test');
 
         $item = [
             'id' => 123,
@@ -228,7 +225,7 @@ class CartTest extends TestCase
 
     public function testTotalQuantity()
     {
-        $cart = new Cart('test', new MockArraySessionStorage());
+        $cart = new Cart('test');
 
         $item = [
             'id' => 123,
@@ -251,7 +248,7 @@ class CartTest extends TestCase
 
     public function testGetTotalPrice()
     {
-        $cart = new Cart('test', new MockArraySessionStorage());
+        $cart = new Cart('test');
 
         $item = [
             'id' => 123,
@@ -274,7 +271,7 @@ class CartTest extends TestCase
 
     public function testClearCart()
     {
-        $cart = new Cart('test', new MockArraySessionStorage());
+        $cart = new Cart('test');
 
         $item = [
             'id' => 123,

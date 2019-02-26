@@ -38,9 +38,7 @@ class Cart implements CartInterface
      */
     public function __construct($name = null)
     {
-        $this->session = new Session($storage);
-
-        $this->collection = new Collection();
+        $this->collection = app(Collection::class);
 
         if ($name) {
             $this->setCart($name);
@@ -91,11 +89,11 @@ class Cart implements CartInterface
             return $this->updateQty($item->id, $item->quantity + $product['quantity']);
         }
 
-        $this->collection->setItems($this->session->get($this->getCart(), []));
+        $this->collection->setItems(Session::get($this->getCart(), []));
 
         $items = $this->collection->insert($product);
 
-        $this->session->set($this->getCart(), $items);
+        Session::put($this->getCart(), $items);
 
         return $this->collection->make($items);
     }
@@ -108,7 +106,7 @@ class Cart implements CartInterface
      */
     public function update(array $product)
     {
-        $this->collection->setItems($this->session->get($this->getCart(), []));
+        $this->collection->setItems(Session::get($this->getCart(), []));
 
         if (!isset($product['id'])) {
             throw new Exception('id is required');
@@ -122,7 +120,7 @@ class Cart implements CartInterface
 
         $items = $this->collection->insert($item);
 
-        $this->session->set($this->getCart(), $items);
+        Session::put($this->getCart(), $items);
 
         return $this->collection->make($items);
     }
@@ -169,11 +167,11 @@ class Cart implements CartInterface
      */
     public function remove($id)
     {
-        $items = $this->session->get($this->getCart(), []);
+        $items = Session::get($this->getCart(), []);
 
         unset($items[$id]);
 
-        $this->session->set($this->getCart(), $items);
+        Session::put($this->getCart(), $items);
 
         return $this->collection->make($items);
     }
@@ -195,7 +193,7 @@ class Cart implements CartInterface
      */
     public function getItems()
     {
-        return $this->collection->make($this->session->get($this->getCart()));
+        return $this->collection->make(Session::get($this->getCart()));
     }
 
     /**
@@ -206,7 +204,7 @@ class Cart implements CartInterface
      */
     public function get($id)
     {
-        $this->collection->setItems($this->session->get($this->getCart(), []));
+        $this->collection->setItems(Session::get($this->getCart(), []));
 
         return $this->collection->findItem($id);
     }
@@ -219,7 +217,7 @@ class Cart implements CartInterface
      */
     public function has($id)
     {
-        $this->collection->setItems($this->session->get($this->getCart(), []));
+        $this->collection->setItems(Session::get($this->getCart(), []));
 
         return $this->collection->findItem($id) ? true : false;
     }
@@ -281,16 +279,16 @@ class Cart implements CartInterface
                 throw new InvalidArgumentException("Argument must be an instance of " . get_class($this));
             }
 
-            $items = $this->session->get($cart->getCart(), []);
+            $items = Session::get($cart->getCart(), []);
         } else {
-            if (!$this->session->has($cart . self::CARTSUFFIX)) {
+            if (!Session::has($cart . self::CARTSUFFIX)) {
                 throw new Exception('Cart does not exist: ' . $cart);
             }
 
-            $items = $this->session->get($cart . self::CARTSUFFIX, []);
+            $items = Session::get($cart . self::CARTSUFFIX, []);
         }
 
-        $this->session->set($this->getCart(), $items);
+        Session::put($this->getCart(), $items);
 
     }
 
@@ -313,6 +311,6 @@ class Cart implements CartInterface
 
     public function clear()
     {
-        $this->session->remove($this->getCart());
+        Session::forget($this->getCart());
     }
 }

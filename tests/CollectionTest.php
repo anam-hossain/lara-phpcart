@@ -3,8 +3,7 @@
 namespace Anam\Phpcart\Tests;
 
 use Anam\Phpcart\Collection;
-use Exception;
-use PHPUnit\Framework\TestCase;
+use Tests\TestCase;
 
 class CollectionTest extends TestCase
 {
